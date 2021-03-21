@@ -1,0 +1,100 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'application'
+    id 'io.qameta.allure' version '2.8.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    allureVersion = "2.13.8"
+    selenideVersion = "5.19.0"
+    junitVersion = "5.7.1"
+}
+
+allure {
+    version = "${allureVersion}"
+    autoconfigure = true
+    aspectjweaver = true
+    useJUnit5 {
+        version = "${allureVersion}"
+    }
+}
+
+dependencies {
+    testImplementation(
+            "org.aspectj:aspectjweaver:1.9.5",
+            "com.codeborne:selenide:${selenideVersion}",
+            "io.qameta.allure:allure-selenide:${allureVersion}",
+            "org.aeonbits.owner:owner:1.0.12",
+            "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    )
+    testRuntimeOnly(
+            "ch.qos.logback:logback-classic:1.2.3",
+            "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperties += System.properties
+
+    systemProperties += [
+            'junit.jupiter.execution.parallel.enabled'             : true,
+            'junit.jupiter.execution.parallel.mode.default'        : 'concurrent',
+            'junit.jupiter.execution.parallel.mode.classes.default': 'concurrent',
+            'junit.jupiter.execution.parallel.config.strategy'     : 'fixed',
+    ]
+
+    def threads = System.getProperty("threads")
+    if (threads) {
+        systemProperties += [
+                'junit.jupiter.execution.parallel.config.fixed.parallelism': threads
+        ]
+    } else {
+        systemProperties += [
+                'junit.jupiter.execution.parallel.config.fixed.parallelism': 2
+        ]
+    }
+
+    testLogging {
+        lifecycle {
+            events "passed", "failed"
+//            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task smartphones(type: Test) {
+    useJUnitPlatform() {
+        includeTags 'smartphones'
+    }
+}
+
+task mainPage(type: Test) {
+    useJUnitPlatform() {
+        includeTags 'mainPage'
+    }
+}
+
+task search(type: Test) {
+    useJUnitPlatform() {
+        includeTags 'search'
+    }
+}
