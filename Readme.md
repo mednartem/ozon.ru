@@ -22,6 +22,6 @@ Java, Gradle, Junit5, Selenide, Allure Report, Telegram Bot.
 > gradle clean -Dremote.driver.url= -Dremote.driver.user= -Dremote.driver.password= -Dremote.browser.name= -Dbase.url= -Dvideo= -Dthreads=
 
 #### Allure report
-![Allure](src/test/resources/images/Allure Report.png)
-![Allure2](src/test/resources/images/Allure Report2.png)
+![Allure](src/test/resources/images/AllureReport.png)
+![Allure2](src/test/resources/images/AllureReport2.png)
 
