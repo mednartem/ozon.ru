@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
