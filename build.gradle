@@ -105,3 +105,9 @@ task search(type: Test) {
         includeTags 'search'
     }
 }
+
+task api(type: Test) {
+    useJUnitPlatform() {
+        includeTags 'api'
+    }
+}
