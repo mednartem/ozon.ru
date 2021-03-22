@@ -90,7 +90,7 @@ public class OzonTests extends TestBase {
         String priceOfPhoneOnCart = ".a7o7 > span";
         String totalPriceInCart = ".a5a6";
 
-        step("Open Parcel page", () -> open("category/smartfony-15502/"));
+        step("Open smartphones page", () -> open("category/smartfony-15502/"));
         step("Add to shopping cart", () -> {
             ElementsCollection listSmartphones = $(byDataWidget("searchResultsV2")).$$(listPhones).shouldHave(sizeGreaterThan(0));
             model.setTitle(listSmartphones.first().$(firstTitleOfPhoneOnPage).getText());
