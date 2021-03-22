@@ -13,8 +13,7 @@ public class SelenideConditions {
         return new Condition(text) {
             @Override
             public boolean apply(Driver driver, WebElement element) {
-//                return element.getText().replaceAll("\\D", "").equals(text.replaceAll("\\D", ""));
-                return element.getText().replaceAll("\\D", "").equals(text);
+                return element.getText().replaceAll("\\D", "").equals(text.replaceAll("\\D", ""));
             }
 
             public String actualValue(Driver driver, WebElement element) {
