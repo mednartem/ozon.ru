@@ -25,7 +25,6 @@ import static io.qameta.allure.Allure.step;
 public class OzonTests extends TestBase {
 
     @Test
-    @AllureId("1733")
     @Owner("Demyshev")
     @Feature("Main page")
     @Tag("mainPage")
